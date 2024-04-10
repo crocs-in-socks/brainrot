@@ -10,8 +10,8 @@ from models.lstm.lstm_model import Model
 
 # constants
 device = torch.device('cpu')
-max_seq_len = 100
-temperature = 0.4
+max_seq_len = 30
+temperature = 0.6
 
 # paths
 script_dir = os.path.dirname(__file__)
@@ -39,7 +39,10 @@ model.load_state_dict(torch.load(model_path, map_location=device))
 
 def infer(request):
 
-    init_prompt = random.choice(['who', 'what', 'when', 'why', 'how'])
+    # tokens = list(vocab.get_itos())
+    tokens = ['Who', 'What', 'When', 'Why', 'How',
+              'The', 'But', 'Since', 'A', 'An', 'This', 'It', 'That', 'There', 'They', 'We', 'You', 'My', 'Their', 'Our', 'And', 'Or']
+    init_prompt = '<eos> ' + (random.choice(tokens))
 
     model.eval()
     tokens = tokenizer(init_prompt)
@@ -64,6 +67,6 @@ def infer(request):
 
     itos = vocab.get_itos()
     tokens = [itos[idx] for idx in indices]
-    brainrot = ' '.join(tokens)
+    brainrot = ' '.join(tokens[1:])
 
-    return JsonResponse({'brainrot': brainrot})
+    return JsonResponse({'data': brainrot})

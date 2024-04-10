@@ -1,0 +1,36 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+    font-style: normal;
+    font-size: large;
+}
+
+.backdrop {
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+#textbox {
+    max-width: 30vw;
+    min-width: 20vw; /* Set max width to 30% of viewport width */
+    max-height: 30vh; /* Set max height to 30% of viewport height */
+    overflow: auto; /* Enable scrolling if content overflows */
+    padding: 20px; /* Add some padding */
+    text-align: center; /* Center text */
+    position: absolute;
+    animation: colorChange 5s infinite; /* Apply color-changing animation */
+}
+
+@keyframes colorChange {
+    0% { color:   #a0025e; }
+    20% { color:  #EB5E28; }
+    40% { color:  #5BC0BE; }
+    60% { color:  #08415C; }
+    80% { color:  #ECD444; }
+    100% { color: #CB429F }
+}
